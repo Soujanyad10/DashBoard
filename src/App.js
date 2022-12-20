@@ -5,7 +5,7 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import axios from 'axios';
 
 import { Navbar, Sidebar, ThemeSettings } from './components';
-import { ECommerce, Calendar, Stacked, Line, Pie} from './pages';
+import { ECommerce, Calendar, Stacked, Line, Pie, Forcasting} from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
@@ -101,6 +101,7 @@ const App = () => {
                 {/* Pages */}
                 {/* <Route path='/employees' element={<Employees/>}/>
                 <Route path='/customers' element={<Customers/>}/> */}
+                <Route path='/forcasting' element={<Forcasting/>}/>
 
                 {/* Apps */}
                 <Route path='/calendar' element={<Calendar/>}/>

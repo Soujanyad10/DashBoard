@@ -171,11 +171,11 @@ const ECommerce = () => {
       <div className="flex gap-10 m-4 flex-wrap justify-center">
         <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-96 md:w-760">
           <div className="flex justify-between items-center gap-2 mb-10">
-            <p className="text-xl font-semibold">Revenue Forecast</p>
-            <DropDown currentMode={currentMode} />
+            {/* <p className="text-xl font-semibold">Revenue Forecast</p>
+            <DropDown currentMode={currentMode} /> */}
           </div>
           <div className="md:w-full overflow-auto">
-            <Line />
+            {/* <Line /> */}
           </div>
         </div>
       </div>
