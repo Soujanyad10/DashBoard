@@ -37,7 +37,7 @@ const options = {
     }]
 }
 
-const options1 = {
+const graph1 = {
     animationEnabled: true,
     // theme: "dark2",
 
@@ -96,7 +96,7 @@ const Forcasting = () => {
         <div className="flex flex-row justify-between items-center gap-2 mb-10">
         </div>
         <div className="md:w-full overflow-auto">
-        <CanvasJSChart options={options1}/>
+        <CanvasJSChart options={graph1}/>
         </div>
       </div>
     </div>
