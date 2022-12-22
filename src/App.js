@@ -9,7 +9,12 @@ import { ECommerce, Calendar, Stacked, Line, Pie, Forcasting} from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
-
+axios.post( "http://127.0.0.1:8000/forecast",{"val":"val['v1']"})
+    .then(res=>{
+      console.log("result",res)
+      localStorage.setItem("actdata",JSON.stringify(res.data["actual"]));
+      localStorage.setItem("preddata",JSON.stringify(res.data["predicted"]));
+    })
 const val = {}
 
 const App = () => {
@@ -26,7 +31,6 @@ const App = () => {
   }, []);
   
   
-  
   console.log(val["v1"],"sssssssssssssssssssss")
   // console.log(JSON.parse(filter),"sssssssssssssssss");
   useEffect(() => {
@@ -34,12 +38,22 @@ const App = () => {
       const filter = localStorage.getItem("filer")
       val["v1"]  = JSON.parse(filter)
       console.log(val["v1"],"iiiiiiiiiiiiiiiiiiiii")
+
+      axios.post( "http://127.0.0.1:8000/getdata",{"val":val["v1"]})
+    .then(res=>{
+      console.log("result21212121",res.data)
+      localStorage.setItem("MonthD",res.data['Month'])
+      localStorage.setItem("YearD",res.data['Year'])
+      localStorage.setItem("MonthGD",res.data['Month_Goal'])
+      localStorage.setItem("YearGD",res.data['Year_Goal'])
+    })
+      
       axios.post( "http://127.0.0.1:8000/latestrevenue",{"val":val["v1"]})
     .then(res=>{
       console.log("result",res)
       Setchk(res.data);
     })
-    }, 1000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 

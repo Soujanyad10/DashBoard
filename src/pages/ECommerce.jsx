@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
 // import { IoIosMore } from 'react-icons/io';
@@ -10,10 +10,29 @@ import { useStateContext } from '../contexts/ContextProvider';
 // import product9 from '../data/product9.jpg';
 
 
+
+
 const ECommerce = () => {
+  
+    const [MD,setMD] = useState("");
+    const [YD,setYD] = useState("");
+    const [YGD,setYGD] = useState("");
+    const [MGD,setMGD] = useState("");
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setMD(localStorage.getItem("MonthD"))
+        setYD(localStorage.getItem("YearD"))
+        setMGD(localStorage.getItem("MonthGD"))
+        setYGD(localStorage.getItem("YearGD"))
+      }, 2000);
+      return () => clearInterval(interval);
+    }, []);
+
+
   const { currentColor, currentMode } = useStateContext();
   const [val, setval] = useState("2020");
-  const z = '$63,448.78';
+  // const z = '$63,448.78';
   const handlechange = (event) => {
     setval(event.target.value);
   };
@@ -31,8 +50,8 @@ const ECommerce = () => {
           <div className="flex justify-between items-center">
             <div>
               <p className="font-bold text-gray-400">Revenue Month</p>
-              <p className="text-2xl">$63,448.78</p>
-              <p className="text-sm">Goal {z}</p>
+              <p className="text-2xl">${MD}</p>
+              <p className="text-sm">Goal ${MGD}</p>
             </div>
             <button
               type="button"
@@ -47,8 +66,8 @@ const ECommerce = () => {
           <div className="flex justify-between items-center">
             <div>
               <p className="font-bold text-gray-400">Revenue YTD</p>
-              <p className="text-2xl">$63,448.78</p>
-              <p className="text-sm">Goal {z}</p>
+              <p className="text-2xl">${YD}</p>
+              <p className="text-sm">Goal ${YGD}</p>
             </div>
             <button
               type="button"
@@ -97,7 +116,7 @@ const ECommerce = () => {
                 <span>
                   <GoPrimitiveDot />
                 </span>
-                <span>Budget</span>
+                <span>Target</span>
               </p>
             </div>
           </div>
@@ -105,18 +124,17 @@ const ECommerce = () => {
             <div className=" border-r-1 border-color m-4 pr-10">
               <div>
                 <p>
-                  <span className="text-3xl font-semibold">$93,438</span>
+                  <span className="text-3xl font-semibold">${YGD}</span>
                   <span className="p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white bg-green-400 ml-3 text-xs">
                     23%
                   </span>
                 </p>
-                <p className="text-gray-500 mt-1">Budget</p>
+                <p className="text-gray-500 mt-1">Total Revenue From last 23 Years</p>
               </div>
               <div className="mt-8">
-                <p className="text-3xl font-semibold">$48,487</p>
+                <p className="text-3xl font-semibold">${MGD}</p>
 
-                <p className="text-gray-500 mt-1">Expense</p>
-                
+                <p className="text-gray-500 mt-1">Average Revenue</p>                
               </div>
 
               <div className="mt-5">
@@ -145,7 +163,7 @@ const ECommerce = () => {
               <p className="font-semibold text-white text-2xl">Earnings</p>
 
               <div>
-                <p className="text-2xl text-white font-semibold mt-8">$63,448.78</p>
+                <p className="text-2xl text-white font-semibold mt-8">${MD*12}</p>
                 <p className="text-gray-200">Monthly revenue</p>
               </div>
             </div>
@@ -168,17 +186,7 @@ const ECommerce = () => {
         </div>
       </div>
 
-      <div className="flex gap-10 m-4 flex-wrap justify-center">
-        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-96 md:w-760">
-          <div className="flex justify-between items-center gap-2 mb-10">
-            {/* <p className="text-xl font-semibold">Revenue Forecast</p>
-            <DropDown currentMode={currentMode} /> */}
-          </div>
-          <div className="md:w-full overflow-auto">
-            {/* <Line /> */}
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 };
