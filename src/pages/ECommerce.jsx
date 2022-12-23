@@ -50,8 +50,8 @@ const ECommerce = () => {
           <div className="flex justify-between items-center">
             <div>
               <p className="font-bold text-gray-400">Revenue Month</p>
-              <p className="text-2xl">${MD}</p>
-              <p className="text-sm">Goal ${MGD}</p>
+              <p className="text-2xl">₹{MD}</p>
+              <p className="text-sm">Goal ₹{MGD}</p>
             </div>
             <button
               type="button"
@@ -66,8 +66,8 @@ const ECommerce = () => {
           <div className="flex justify-between items-center">
             <div>
               <p className="font-bold text-gray-400">Revenue YTD</p>
-              <p className="text-2xl">${YD}</p>
-              <p className="text-sm">Goal ${YGD}</p>
+              <p className="text-2xl">₹{YD}</p>
+              <p className="text-sm">Goal ₹{YGD}</p>
             </div>
             <button
               type="button"
@@ -124,7 +124,7 @@ const ECommerce = () => {
             <div className=" border-r-1 border-color m-4 pr-10">
               <div>
                 <p>
-                  <span className="text-3xl font-semibold">${YGD}</span>
+                  <span className="text-3xl font-semibold">₹{YGD}</span>
                   <span className="p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white bg-green-400 ml-3 text-xs">
                     23%
                   </span>
@@ -132,7 +132,7 @@ const ECommerce = () => {
                 <p className="text-gray-500 mt-1">Total Revenue From last 23 Years</p>
               </div>
               <div className="mt-8">
-                <p className="text-3xl font-semibold">${MGD}</p>
+                <p className="text-3xl font-semibold">₹{MGD}</p>
 
                 <p className="text-gray-500 mt-1">Average Revenue</p>                
               </div>
@@ -163,7 +163,7 @@ const ECommerce = () => {
               <p className="font-semibold text-white text-2xl">Earnings</p>
 
               <div>
-                <p className="text-2xl text-white font-semibold mt-8">${MD*12}</p>
+                <p className="text-2xl text-white font-semibold mt-8">₹{MD*12}</p>
                 <p className="text-gray-200">Monthly revenue</p>
               </div>
             </div>

@@ -25,7 +25,7 @@ const Forcasting = () => {
         shared: true
     },
     data: [{
-      type: "spline",
+      type: "line",
       name: "2023 Actual",
       showInLegend: true,
       dataPoints: actd
@@ -55,7 +55,7 @@ const Forcasting = () => {
         shared: true
     },
     data: [{
-        type: "spline",
+        type: "line",
         name: "2023 6 Months",
         showInLegend: true,
         dataPoints: actd

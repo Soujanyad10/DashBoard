@@ -613,12 +613,24 @@ export const chatData = [
   },
 ];
 
-var MGD = localStorage.getItem("MonthGD").toString().slice(0,8);
-var YGD = localStorage.getItem("YearGD").toString();
+var _MGD = localStorage.getItem("MonthGD")
+if (_MGD===null){
+  var MGD =localStorage.getItem("MonthGD")
+}
+else{
+  var MGD = localStorage.getItem("MonthGD").toString().slice(0,8);
+}
+var _YGD = localStorage.getItem("YearGD");
+if (_YGD===null){
+  var YGD =localStorage.getItem("YearGD")
+}
+else{
+  var YGD = localStorage.getItem("YearGD").toString().slice(0,8);
+}
 export const earningData = [
   {
     icon: <FiBarChart />,
-    amount: '$'+YGD,
+    amount: '₹'+YGD,
     percentage: '-4%',
     title: 'Revenue Ytd Goal',
     iconColor: '#03C9D7',
@@ -627,7 +639,7 @@ export const earningData = [
   },
   {
     icon: <BsBoxSeam />,
-    amount: '$'+MGD,
+    amount: '₹'+MGD,
     percentage: '+23%',
     title: 'Revenue Month Goal',
     iconColor: 'rgb(255, 244, 229)',
