@@ -84,7 +84,7 @@ const Forcasting = () => {
         <div className="flex flex-row justify-between items-center gap-2 mb-10">
         </div>
         <div className="md:w-full overflow-auto">
-        <CanvasJSChart options={graph1}/>
+        <CanvasJSChart options={options1}/>
         </div>
       </div>
     </div>
