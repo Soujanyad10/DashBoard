@@ -10,7 +10,9 @@ import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
 
-var API = "http://127.0.0.1:8000/"
+// var API = "http://127.0.0.1:8000/"
+
+const API = "https://4c3f-223-223-155-81.ngrok.io/"
 
 axios.post( API+"forecast",{"val":"val['v1']"})
     .then(res=>{
@@ -20,7 +22,6 @@ axios.post( API+"forecast",{"val":"val['v1']"})
     })
 const val = {}
 
-const API = "https://4c3f-223-223-155-81.ngrok.io/"
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
@@ -44,7 +45,7 @@ const App = () => {
       val["v1"]  = JSON.parse(filter)
       console.log(val["v1"],"iiiiiiiiiiiiiiiiiiiii")
 
-      axios.post( "http://127.0.0.1:8000/getdata",{"val":val["v1"]})
+      axios.post( API+"getdata",{"val":val["v1"]})
     .then(res=>{
       console.log("result21212121",res.data)
       localStorage.setItem("MonthD",res.data['Month'])
@@ -53,7 +54,7 @@ const App = () => {
       localStorage.setItem("YearGD",res.data['Year_Goal'])
     })
       
-      axios.post( "http://127.0.0.1:8000/latestrevenue",{"val":val["v1"]})
+      axios.post( API+"latestrevenue",{"val":val["v1"]})
     .then(res=>{
       console.log("result",res)
       Setchk(res.data);
