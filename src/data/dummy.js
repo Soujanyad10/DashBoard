@@ -613,10 +613,12 @@ export const chatData = [
   },
 ];
 
+var MGD = localStorage.getItem("MonthGD").toString().slice(0,8);
+var YGD = localStorage.getItem("YearGD").toString();
 export const earningData = [
   {
     icon: <FiBarChart />,
-    amount: '$9,540,00',
+    amount: '$'+YGD,
     percentage: '-4%',
     title: 'Revenue Ytd Goal',
     iconColor: '#03C9D7',
@@ -625,7 +627,7 @@ export const earningData = [
   },
   {
     icon: <BsBoxSeam />,
-    amount: '$49,396,00',
+    amount: '$'+MGD,
     percentage: '+23%',
     title: 'Revenue Month Goal',
     iconColor: 'rgb(255, 244, 229)',
@@ -3214,9 +3216,9 @@ export const stackedPrimaryXAxis = {
 
 export const stackedPrimaryYAxis = {
   lineStyle: { width: 0 },
-  minimum: 100,
-  maximum: 400,
-  interval: 100,
+  minimum: 1000,
+  maximum: 9000,
+  interval: 1000,
   majorTickLines: { width: 0 },
   majorGridLines: { width: 1 },
   minorGridLines: { width: 1 },

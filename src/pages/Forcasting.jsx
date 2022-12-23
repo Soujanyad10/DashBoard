@@ -1,52 +1,54 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import axios from 'axios';
 import {CanvasJSChart} from 'canvasjs-react-charts';
 
-const options = {
+var actd = JSON.parse(localStorage.getItem('actdata'))
+var pred = JSON.parse(localStorage.getItem('preddata'))
+
+// console.log(JSON.parse(dc))
+
+const Forcasting = () => {
+  const options1 = {
+    exportEnabled: true,
     animationEnabled: true,
     // theme: "dark2",
-
-    title:{
-        text: "Previous Year Revenue"
-    },
-    axisY: {
-        title: "Amount in Dollar",
-        interval: 100,
-        suffix: "$"
-    },
-    toolTip: {
-        shared: true
-    },
-    data: [{
-        type: "spline",
-        name: "2021",
-        showInLegend: true,
-        dataPoints: [
-          { y: 155, label: "Jan" },
-          { y: 350, label: "Feb" },
-          { y: 525, label: "Mar" },
-          { y: 198, label: "Apr" },
-          { y: 242, label: "May" },
-          { y: 450, label: "Jun" },
-          { y: 146, label: "Jul" },
-          { y: 349, label: "Aug" },
-          { y: 153, label: "Sept" },
-          { y: 658, label: "Oct" },
-          { y: 154, label: "Nov" },
-          { y: 790, label: "Dec" }
-        ]
-    }]
-}
-
-const graph1 = {
-    animationEnabled: true,
-    // theme: "dark2",
-
+  
     title:{
         text: "Predicted Revenue"
     },
     axisY: {
         title: "Amount in Dollar",
-        interval: 100,
+        interval: 500,
+        suffix: "$"
+    },
+    toolTip: {
+        shared: true
+    },
+    data: [{
+      type: "spline",
+      name: "2023 Actual",
+      showInLegend: true,
+      dataPoints: actd
+    },
+    {
+        type: "spline",
+        name: "2023 Predicted",
+        showInLegend: true,
+        dataPoints: pred
+    }]
+  }
+  const options = {
+    animationEnabled: true,
+
+    exportEnabled: true,
+    // theme: "dark2",
+
+    title:{
+        text: "6 Months Given Revenue"
+    },
+    axisY: {
+        title: "Amount in Dollar",
+        interval: 500,
         suffix: "$"
     },
     toolTip: {
@@ -54,27 +56,13 @@ const graph1 = {
     },
     data: [{
         type: "spline",
-        name: "2022",
+        name: "2023 6 Months",
         showInLegend: true,
-        dataPoints: [
-          { y: 155, label: "Jan" },
-          { y: 350, label: "Feb" },
-          { y: 525, label: "Mar" },
-          { y: 198, label: "Apr" },
-          { y: 242, label: "May" },
-          { y: 450, label: "Jun" },
-          { y: 146, label: "Jul" },
-          { y: 349, label: "Aug" },
-          { y: 153, label: "Sept" },
-          { y: 658, label: "Oct" },
-          { y: 154, label: "Nov" },
-          { y: 790, label: "Dec" }
-        ]
+        dataPoints: actd
     }]
-}
+  }
 
-const Forcasting = () => {
-
+  console.log("forecasted ======== =",pred)
   return (
     <div className="mt-24 ">
         <div className="flex flex-column gap-10 mt-1 ml-4 pb-20 space-y-4 justify-center ">
@@ -100,16 +88,6 @@ const Forcasting = () => {
         </div>
       </div>
     </div>
-
-    {/* <div className="flex gap-10 m-4 flex-wrap justify-center">
-      <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-96 md:w-760">
-        <div className="flex justify-between items-center gap-2 mb-10">
-        </div>
-        <div className="md:w-full overflow-auto">
-        <CanvasJSChart options={options1}/>
-        </div>
-      </div>
-    </div> */}
   </div>
   );
 }

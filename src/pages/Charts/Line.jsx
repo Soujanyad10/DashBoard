@@ -1,29 +1,52 @@
 import React from 'react';
-import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, LineSeries, DateTime, Legend, Tooltip } from '@syncfusion/ej2-react-charts';
+import {CanvasJSChart} from 'canvasjs-react-charts';
 
-import { lineCustomSeries, LinePrimaryXAxis, LinePrimaryYAxis } from '../../data/dummy';
-import { useStateContext } from '../../contexts/ContextProvider';
+var actd = JSON.parse(localStorage.getItem('actdata'))
+var pred = JSON.parse(localStorage.getItem('preddata'))
+
 
 const LineChart = () => {
-  const { currentMode } = useStateContext();
+  const options1 = {
+    animationEnabled: true,
+    exportEnabled: true,
+    // theme: "dark2",
+    innerHeight:"150%",
+  
+    title:{
+        text: "Predicted Revenue"
+    },
+    axisY: {
+        title: "Amount in Dollar",
+        interval: 500,
+        suffix: "$"
+    },
+    toolTip: {
+        shared: true
+    },
+    data: [{
+      type: "spline",
+      name: "2023 Actual",
+      showInLegend: true,
+      dataPoints: actd
+    },
+    {
+        type: "spline",
+        name: "2023 Predicted",
+        showInLegend: true,
+        dataPoints: pred
+    }]
+  }
 
   return (
-    <ChartComponent
-      id="line-chart"
-      height="420px"
-      primaryXAxis={LinePrimaryXAxis}
-      primaryYAxis={LinePrimaryYAxis}
-      chartArea={{ border: { width: 0 } }}
-      tooltip={{ enable: true }}
-      background={currentMode === 'Dark' ? '#33373E' : '#fff'}
-      legendSettings={{ background: 'white' }}
-      >
-      <Inject services={[LineSeries, DateTime, Legend, Tooltip]} />
-      <SeriesCollectionDirective>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        {lineCustomSeries.map((item, index) => <SeriesDirective key={index} {...item} />)}
-      </SeriesCollectionDirective>
-    </ChartComponent>
+    <div className="mt-24 ">
+    <div className="flex flex-column gap-10 m-4 justify-center">
+      <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-96 md:w-760">
+        <div className="md:w-full overflow-auto">
+        <CanvasJSChart options={options1}/>
+        </div>
+      </div>
+    </div>
+  </div>
   );
 };
 
