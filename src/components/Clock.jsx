@@ -31,4 +31,4 @@ const Clock = () => {
   )
 }
 
-export default Clock
+export default Clock;

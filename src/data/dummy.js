@@ -4,7 +4,7 @@ import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, Fi
 import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
 // import { BiColorFill } from 'react-icons/bi';
 // import { IoMdContacts } from 'react-icons/io';
-// import { RiContactsLine, RiStockLine } from 'react-icons/ri';
+import { RiContactsLine, RiStockLine } from 'react-icons/ri';
 // import { MdOutlineSupervisorAccount } from 'react-icons/md';
 // import { HiOutlineRefresh } from 'react-icons/hi';
 import { TiTick } from 'react-icons/ti';
@@ -538,10 +538,10 @@ export const links = [
         name: 'pie',
         icon: <FiPieChart />,
       },
-      // {
-      //   name: 'financial',
-      //   icon: <RiStockLine />,
-      // },
+      {
+        name: 'stocks',
+        icon: <RiStockLine />,
+      },
       // {
       //   name: 'color-mapping',
       //   icon: <BsBarChart />,
@@ -613,8 +613,31 @@ export const chatData = [
   },
 ];
 
-var MGD = localStorage.getItem("MonthGD").toString().slice(0,8);
-var YGD = localStorage.getItem("YearGD").toString();
+// var MGD = localStorage.getItem("MonthGD").toString().slice(0,8);
+// var YGD = localStorage.getItem("YearGD").toString();
+
+// import React from 'react';
+// import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
+// import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
+// import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
+// import { BiColorFill } from 'react-icons/bi';
+// import { IoMdContacts } from 'react-icons/io';
+// import { RiContac}
+var _MGD = localStorage.getItem("MonthGD")
+if (_MGD===null){
+  var MGD =localStorage.getItem("MonthGD")
+}
+else{
+  var MGD = localStorage.getItem("MonthGD").toString().slice(0,8);
+}
+var _YGD = localStorage.getItem("YearGD");
+if (_YGD===null){
+  var YGD =localStorage.getItem("YearGD")
+}
+else{
+  var YGD = localStorage.getItem("YearGD").toString().slice(0,8);
+}
+
 export const earningData = [
   {
     icon: <FiBarChart />,

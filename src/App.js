@@ -5,7 +5,7 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import axios from 'axios';
 
 import { Navbar, Sidebar, ThemeSettings } from './components';
-import { ECommerce, Calendar, Stacked, Line, Pie, Forcasting} from './pages';
+import { ECommerce, Calendar, Stacked, Line, Pie, Forcasting, Stocks} from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
@@ -16,6 +16,8 @@ axios.post( "http://127.0.0.1:8000/forecast",{"val":"val['v1']"})
       localStorage.setItem("preddata",JSON.stringify(res.data["predicted"]));
     })
 const val = {}
+
+const API = "https://4c3f-223-223-155-81.ngrok.io/"
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
@@ -39,7 +41,7 @@ const App = () => {
       val["v1"]  = JSON.parse(filter)
       console.log(val["v1"],"iiiiiiiiiiiiiiiiiiiii")
 
-      axios.post( "http://127.0.0.1:8000/getdata",{"val":val["v1"]})
+      axios.post( API + "getdata",{"val":val["v1"]})
     .then(res=>{
       console.log("result21212121",res.data)
       localStorage.setItem("MonthD",res.data['Month'])
@@ -48,7 +50,7 @@ const App = () => {
       localStorage.setItem("YearGD",res.data['Year_Goal'])
     })
       
-      axios.post( "http://127.0.0.1:8000/latestrevenue",{"val":val["v1"]})
+      axios.post( API + "latestrevenue",{"val":val["v1"]})
     .then(res=>{
       console.log("result",res)
       Setchk(res.data);
@@ -113,22 +115,15 @@ const App = () => {
                 <Route path='/ecommerce' element={<ECommerce/>}/>
 
                 {/* Pages */}
-                {/* <Route path='/employees' element={<Employees/>}/>
-                <Route path='/customers' element={<Customers/>}/> */}
                 <Route path='/forcasting' element={<Forcasting/>}/>
 
                 {/* Apps */}
                 <Route path='/calendar' element={<Calendar/>}/>
-                {/* <Route path='/task' element={<Task/>}/> */}
 
                 {/* Charts */}
                 <Route path='/line' element={<Line/>}/>
-                {/* <Route path='/area' element={<Area/>}/>
-                <Route path='/bar' element={<Bar/>}/> */}
                 <Route path='/pie' element={<Pie/>}/>
-                {/* <Route path='/financial' element={<Financial/>}/>
-                <Route path='/color-mapping' element={<ColorMapping/>}/>
-                <Route path='/pyramid' element={<Pyramid/>}/> */}
+                <Route path='/stocks' element={<Stocks />}/>
                 <Route path='/stacked' element={<Stacked/>}/>
 
               </Routes>
