@@ -4,6 +4,8 @@ import axios from 'axios';
 import {  stackedPrimaryXAxis, stackedPrimaryYAxis } from '../../data/dummy';
 import { useStateContext } from '../../contexts/ContextProvider';
 
+var API = "http://127.0.0.1:8000/"
+
 const kl = {}
 // console.log(details)
 const Stacked = ({ width, height,filter}) => {
@@ -13,7 +15,7 @@ const Stacked = ({ width, height,filter}) => {
   const [details, setDetails] = useState();
   useEffect(() => {
     const interval = setInterval(() => {
-      axios.post( "http://127.0.0.1:8000/sales2",{'msg':kl["val"] })
+      axios.post( API+"sales2",{'msg':kl["val"] })
     .then(res=>{
       setDetails(res.data);
     })

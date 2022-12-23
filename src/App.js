@@ -9,7 +9,10 @@ import { ECommerce, Calendar, Stacked, Line, Pie, Forcasting} from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
-axios.post( "http://127.0.0.1:8000/forecast",{"val":"val['v1']"})
+
+var API = "http://127.0.0.1:8000/"
+
+axios.post( API+"forecast",{"val":"val['v1']"})
     .then(res=>{
       console.log("result",res)
       localStorage.setItem("actdata",JSON.stringify(res.data["actual"]));
@@ -39,7 +42,7 @@ const App = () => {
       val["v1"]  = JSON.parse(filter)
       console.log(val["v1"],"iiiiiiiiiiiiiiiiiiiii")
 
-      axios.post( "http://127.0.0.1:8000/getdata",{"val":val["v1"]})
+      axios.post( API+"getdata",{"val":val["v1"]})
     .then(res=>{
       console.log("result21212121",res.data)
       localStorage.setItem("MonthD",res.data['Month'])
@@ -48,7 +51,7 @@ const App = () => {
       localStorage.setItem("YearGD",res.data['Year_Goal'])
     })
       
-      axios.post( "http://127.0.0.1:8000/latestrevenue",{"val":val["v1"]})
+      axios.post( API+"latestrevenue",{"val":val["v1"]})
     .then(res=>{
       console.log("result",res)
       Setchk(res.data);
