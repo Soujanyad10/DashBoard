@@ -14,9 +14,19 @@ axios.post( "http://127.0.0.1:8000/forecast",{"val":"val['v1']"})
       console.log("result",res)
       localStorage.setItem("actdata",JSON.stringify(res.data["actual"]));
       localStorage.setItem("preddata",JSON.stringify(res.data["predicted"]));
-    })
-const val = {}
+    }
+)
 
+axios.post( "http://127.0.0.1:8000/Departments",{"val":"val['v1']"})
+.then(res=>{
+  console.log("result",res)
+  localStorage.setItem("Category",JSON.stringify(res.data));
+})
+const val = {}
+axios.get("http://127.0.0.1:8000/PIE").then(res=>{
+  console.log("result",res)
+  localStorage.setItem("PIE",JSON.stringify(res.data))
+})
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
   const [chk,Setchk] = useState();
@@ -122,7 +132,7 @@ const App = () => {
                 {/* <Route path='/task' element={<Task/>}/> */}
 
                 {/* Charts */}
-                <Route path='/line' element={<Fchart/>}/>
+                <Route path='/Fchart' element={<Fchart/>}/>
                 {/* <Route path='/area' element={<Area/>}/>
                 <Route path='/bar' element={<Bar/>}/> */}
                 <Route path='/pie' element={<Pie/>}/>

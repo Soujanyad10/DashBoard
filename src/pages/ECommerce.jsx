@@ -10,7 +10,8 @@ import { useStateContext } from '../contexts/ContextProvider';
 // import product9 from '../data/product9.jpg';
 
 
-
+const PIEDATA = JSON.parse(localStorage.getItem('PIE'))
+const Cat = JSON.parse(localStorage.getItem('Category'))
 
 const ECommerce = () => {
   
@@ -23,7 +24,7 @@ const ECommerce = () => {
       const interval = setInterval(() => {
         setMD(localStorage.getItem("MonthD"))
         setYD(localStorage.getItem("YearD"))
-        setMGD(localStorage.getItem("MonthGD"))
+        setMGD(localStorage.getItem("MonthGD").toString().slice(0,8))
         setYGD(localStorage.getItem("YearGD"))
       }, 2000);
       return () => clearInterval(interval);
@@ -32,13 +33,23 @@ const ECommerce = () => {
 
   const { currentColor, currentMode } = useStateContext();
   const [val, setval] = useState("2020");
+  const [opt, setOpt] = useState(Cat[0]);
   // const z = '$63,448.78';
   const handlechange = (event) => {
     setval(event.target.value);
   };
+  const handlechange2 = (event) => {
+    setOpt(event.target.value);
+  };
   const DropDown = ({ currentMode}) => (
     <div className="w-28 border-1 border-color px-2 py-1 rounded-md">
       <DropDownListComponent onChange={handlechange} id="time" fields={{ text: 'Time', value: 'Id' }} style={{ border: 'none', color: (currentMode === 'Dark') && 'white' }} value={val} dataSource={dropdownData} popupHeight="220px" popupWidth="120px" />
+    </div>
+  );
+
+  const DropDown2 = ({ currentMode,data}) => (
+    <div className="w-28 border-1 border-color px-2 py-1 rounded-md">
+      <DropDownListComponent onChange={handlechange2} id="time" fields={{ text: 'Time', value: 'Id' }} style={{ border: 'none', color:'white' }} value={opt} dataSource={data} popupHeight="220px" popupWidth="120px" />
     </div>
   );
   
@@ -159,12 +170,14 @@ const ECommerce = () => {
             className=" rounded-2xl md:w-400 p-4 m-3"
             style={{ backgroundColor: currentColor }}
           >
+            
+            <DropDown2 currentMode={currentMode} data={Cat} />
             <div className="flex justify-between items-center ">
-              <p className="font-semibold text-white text-2xl">Earnings</p>
+              <p className="font-semibold text-white text-2xl">Budget</p>
 
               <div>
                 <p className="text-2xl text-white font-semibold mt-8">₹{MD*12}</p>
-                <p className="text-gray-200">Monthly revenue</p>
+                <p className="text-gray-200">Total Budget Estimated Amount</p>
               </div>
             </div>
 
@@ -176,11 +189,11 @@ const ECommerce = () => {
           <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:w-400 p-8 m-3 flex justify-center items-center gap-10">
             <div>
               {/* <p className="text-2xl font-semibold ">$43,246</p> */}
-              <p className="text-gray-400 text-2xl font-semibold">Revenue by Category</p>
+              <p className="text-gray-400 text-2xl font-semibold">Budget by Category</p>
             </div>
 
             <div className="w-40">
-              <Pie id="pie-chart" data={ecomPieChartData} legendVisiblity={false} height="160px" />
+              <Pie id="pie-chart" data={PIEDATA} legendVisiblity={false} height="160px" />
             </div>
           </div>
         </div>
