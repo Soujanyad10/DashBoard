@@ -509,6 +509,10 @@ export const links = [
         name: 'forcasting',
         icon: <FiEdit />,
       },
+      {
+        name: 'sap',
+        icon: <FiEdit />,
+      },
       // {
       //   name: 'editor',
       //   icon: <FiEdit />,
@@ -3103,14 +3107,7 @@ export const dropdownData = [
     Time: '2024',
   },
 ];
-export const SparklineAreaData = [
-  { x: 1, yval: 2 },
-  { x: 2, yval: 6 },
-  { x: 3, yval: 8 },
-  { x: 4, yval: 5 },
-  { x: 5, yval: 10 },
-
-];
+export const SparklineAreaData = [{'x': 10.0, 'yval': 1}, {'x': 1.2588991380213062, 'yval': 2}, {'x': 1.7576915990546467, 'yval': 3}, {'x': 0.2276529074383605, 'yval': 4}, {'x': 5.302033861460419, 'yval': 5}, {'x': 0.08851088309405682, 'yval': 6}]
 
 export const lineCustomSeries = [
   { dataSource: lineChartData[0],

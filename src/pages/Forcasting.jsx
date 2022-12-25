@@ -26,7 +26,7 @@ const Forcasting = () => {
     },
     data: [{
       type: "line",
-      name: "2023 Actual",
+      name: "2022 Actual",
       showInLegend: true,
       dataPoints: actd
     },
@@ -56,7 +56,7 @@ const Forcasting = () => {
     },
     data: [{
         type: "line",
-        name: "2023 6 Months",
+        name: "2022 6 Months",
         showInLegend: true,
         dataPoints: actd
     }]

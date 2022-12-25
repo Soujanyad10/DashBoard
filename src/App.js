@@ -5,7 +5,7 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import axios from 'axios';
 
 import { Navbar, Sidebar, ThemeSettings } from './components';
-import { ECommerce, Calendar, Stacked,Fchart, Line, Pie, Forcasting} from './pages';
+import { ECommerce, Calendar, Stacked,Fchart, Sap, Pie, Forcasting} from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
@@ -47,15 +47,30 @@ const App = () => {
     const interval = setInterval(() => {
       const filter = localStorage.getItem("filer")
       val["v1"]  = JSON.parse(filter)
-      console.log(val["v1"],"iiiiiiiiiiiiiiiiiiiii")
+      const filter2 = localStorage.getItem("filter2")
+      const selected = localStorage.getItem("selected")
+      console.log("SESESESESESESSSE",selected)
+      axios.post("http://127.0.0.1:8000/EstimatedBudget",{"val":filter2})
+    .then(res=>{
+      localStorage.setItem("options2",res.data)
+    })
+      axios.post("http://127.0.0.1:8000/table",{"val":selected})
+    .then(res=>{
+      localStorage.setItem("Table",JSON.stringify(res.data))
+    })
 
       axios.post( "http://127.0.0.1:8000/getdata",{"val":val["v1"]})
     .then(res=>{
-      console.log("result21212121",res.data)
+      // console.log("result21212121",res.data)
       localStorage.setItem("MonthD",res.data['Month'])
       localStorage.setItem("YearD",res.data['Year'])
       localStorage.setItem("MonthGD",res.data['Month_Goal'])
       localStorage.setItem("YearGD",res.data['Year_Goal'])
+    })
+    axios.post( "http://127.0.0.1:8000/sparkline",{"val":filter2})
+    .then(res=>{
+      // console.log("result21212121",res.data)
+      localStorage.setItem("Sparkline",JSON.stringify(res.data))
     })
       
       axios.post( "http://127.0.0.1:8000/latestrevenue",{"val":val["v1"]})
@@ -129,6 +144,7 @@ const App = () => {
 
                 {/* Apps */}
                 <Route path='/calendar' element={<Calendar/>}/>
+                <Route path='/sap' element={<Sap/>}/>
                 {/* <Route path='/task' element={<Task/>}/> */}
 
                 {/* Charts */}

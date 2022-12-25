@@ -7,6 +7,7 @@ import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
 import { Stacked, Pie, Button, Line, SparkLine } from '../components';
 import { earningData, medicalproBranding, recentTransactions, weeklyStats, dropdownData, SparklineAreaData, ecomPieChartData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
+import axios from 'axios';
 // import product9 from '../data/product9.jpg';
 
 
@@ -20,12 +21,20 @@ const ECommerce = () => {
     const [YGD,setYGD] = useState("");
     const [MGD,setMGD] = useState("");
 
+    const [Budget,setBudget] = useState("");
+    const [Sparkl,setSparkl] = useState("");
+
     useEffect(() => {
       const interval = setInterval(() => {
+        setBudget(localStorage.getItem("options2").toString())
         setMD(localStorage.getItem("MonthD"))
         setYD(localStorage.getItem("YearD"))
         setMGD(localStorage.getItem("MonthGD").toString().slice(0,8))
         setYGD(localStorage.getItem("YearGD"))
+        
+        setSparkl(JSON.parse(localStorage.getItem('Sparkline')))
+
+        console.log("BBBBBBBBBBBBBBBBBBBBBBBBBUUUUUUUUUUUUUUUUUUUUUUUUDDDDDDDDD",Budget)
       }, 2000);
       return () => clearInterval(interval);
     }, []);
@@ -40,6 +49,7 @@ const ECommerce = () => {
   };
   const handlechange2 = (event) => {
     setOpt(event.target.value);
+    localStorage.setItem("filter2",event.target.value)
   };
   const DropDown = ({ currentMode}) => (
     <div className="w-28 border-1 border-color px-2 py-1 rounded-md">
@@ -149,7 +159,7 @@ const ECommerce = () => {
               </div>
 
               <div className="mt-5">
-                <SparkLine currentColor={currentColor} id="line-sparkLine" type="Line" height="80px" width="250px" data={SparklineAreaData} color={currentColor} />
+                <SparkLine currentColor={currentColor} id="line-sparkLine" type="Line" height="80px" width="250px" data={Sparkl} color={currentColor} />
               </div>
               <div className="mt-10">
                 <Button
@@ -176,14 +186,14 @@ const ECommerce = () => {
               <p className="font-semibold text-white text-2xl">Budget</p>
 
               <div>
-                <p className="text-2xl text-white font-semibold mt-8">₹{MD*12}</p>
+                <p className="text-2xl text-white font-semibold mt-8">₹{Budget}</p>
                 <p className="text-gray-200">Total Budget Estimated Amount</p>
               </div>
             </div>
 
-            <div className="mt-4">
-              <SparkLine currentColor={currentColor} id="column-sparkLine" height="100px" type="Column" data={SparklineAreaData} width="320" color="rgb(242, 252, 253)" />
-            </div>
+            {/* <div className="mt-4">
+              <SparkLine currentColor={currentColor} id="column-sparkLine" height="100px" type="Column" data={SparklineAreaData} width="320" color="rgb(242, 252, 253)" /> */}
+            {/* </div> */}
           </div>
 
           <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:w-400 p-8 m-3 flex justify-center items-center gap-10">

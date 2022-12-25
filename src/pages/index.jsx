@@ -12,3 +12,4 @@ export { default as Fchart } from './Charts/Fchart';
 // export { default as Pyramid } from './Charts/Pyramid';
 export { default as Stacked } from './Charts/Stacked';
 export { default as Forcasting } from './Forcasting';
+export { default as Sap } from './Sap';
