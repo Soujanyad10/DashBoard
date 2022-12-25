@@ -472,10 +472,10 @@ export const employeesGrid = [
 
 export const links = [
   {
-    title: 'Dashboard',
+    title: 'Finance-Dashboard',
     links: [
       {
-        name: 'ecommerce',
+        name: 'Financial-Dashboard',
         icon: <FiShoppingBag />,
       },
     ],
@@ -502,15 +502,15 @@ export const links = [
     title: 'Apps',
     links: [
       {
-        name: 'calendar',
+        name: 'Calendar',
         icon: <AiOutlineCalendar />,
       },
       {
-        name: 'forcasting',
+        name: 'Forecasting',
         icon: <FiEdit />,
       },
       {
-        name: 'sap',
+        name: 'Budget-Info',
         icon: <FiEdit />,
       },
       // {
@@ -527,7 +527,7 @@ export const links = [
     title: 'Charts',
     links: [
       {
-        name: 'Fchart',
+        name: 'Chart-Analysis',
         icon: <AiOutlineStock />,
       },
       // {

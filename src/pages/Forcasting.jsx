@@ -19,7 +19,7 @@ const Forcasting = () => {
     axisY: {
         title: "Amount in Dollar",
         interval: 500,
-        suffix: "$"
+        suffix: "₹"
     },
     toolTip: {
         shared: true
@@ -49,7 +49,7 @@ const Forcasting = () => {
     axisY: {
         title: "Amount in Dollar",
         interval: 500,
-        suffix: "$"
+        suffix: "₹"
     },
     toolTip: {
         shared: true

@@ -135,20 +135,20 @@ const App = () => {
               <Routes>
                 {/* dashboard  */}
                 <Route path='/' element={<ECommerce/>}/>
-                <Route path='/ecommerce' element={<ECommerce/>}/>
+                <Route path='/Financial-Dashboard' element={<ECommerce/>}/>
 
                 {/* Pages */}
                 {/* <Route path='/employees' element={<Employees/>}/>
                 <Route path='/customers' element={<Customers/>}/> */}
-                <Route path='/forcasting' element={<Forcasting/>}/>
+                <Route path='/Forecasting' element={<Forcasting/>}/>
 
                 {/* Apps */}
-                <Route path='/calendar' element={<Calendar/>}/>
-                <Route path='/sap' element={<Sap/>}/>
+                <Route path='/Calendar' element={<Calendar/>}/>
+                <Route path='/Budget-Info' element={<Sap/>}/>
                 {/* <Route path='/task' element={<Task/>}/> */}
 
                 {/* Charts */}
-                <Route path='/Fchart' element={<Fchart/>}/>
+                <Route path='/Chart-Analysis' element={<Fchart/>}/>
                 {/* <Route path='/area' element={<Area/>}/>
                 <Route path='/bar' element={<Bar/>}/> */}
                 <Route path='/pie' element={<Pie/>}/>
