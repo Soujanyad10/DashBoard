@@ -3090,6 +3090,14 @@ export const lineChartData = [
 ];
 export const dropdownData = [
   {
+    Id: '2018',
+    Time: '2018',
+  },
+  {
+    Id: '2019',
+    Time: '2019',
+  },
+  {
     Id: '2020',
     Time: '2020',
   },
@@ -3099,13 +3107,7 @@ export const dropdownData = [
   }, {
     Id: '2022',
     Time: '2022',
-  },{
-    Id: '2023',
-    Time: '2023',
-  },{
-    Id: '2024',
-    Time: '2024',
-  },
+  }
 ];
 export const SparklineAreaData = [{'x': 10.0, 'yval': 1}, {'x': 1.2588991380213062, 'yval': 2}, {'x': 1.7576915990546467, 'yval': 3}, {'x': 0.2276529074383605, 'yval': 4}, {'x': 5.302033861460419, 'yval': 5}, {'x': 0.08851088309405682, 'yval': 6}]
 

@@ -17,7 +17,7 @@ const Forcasting = () => {
         text: "Predicted Revenue"
     },
     axisY: {
-        title: "Amount in Dollar",
+        title: "Amount in Rupees",
         interval: 500,
         suffix: "₹"
     },
@@ -26,13 +26,13 @@ const Forcasting = () => {
     },
     data: [{
       type: "line",
-      name: "2022 Actual",
+      name: "Actual",
       showInLegend: true,
       dataPoints: actd
     },
     {
         type: "spline",
-        name: "2023 Predicted",
+        name: "Predicted",
         showInLegend: true,
         dataPoints: pred
     }]
@@ -47,7 +47,7 @@ const Forcasting = () => {
         text: "6 Months Given Revenue"
     },
     axisY: {
-        title: "Amount in Dollar",
+        title: "Amount in Rupees",
         interval: 500,
         suffix: "₹"
     },

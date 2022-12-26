@@ -5,13 +5,13 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import axios from 'axios';
 
 import { Navbar, Sidebar, ThemeSettings } from './components';
-import { ECommerce, Calendar, Stacked,Fchart, Sap, Pie, Forcasting} from './pages';
+import { ECommerce, Calendar,Fchart, Sap, Forcasting} from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
 axios.post( "http://127.0.0.1:8000/forecast",{"val":"val['v1']"})
     .then(res=>{
-      console.log("result",res)
+      // console.log("result",res)
       localStorage.setItem("actdata",JSON.stringify(res.data["actual"]));
       localStorage.setItem("preddata",JSON.stringify(res.data["predicted"]));
     }
@@ -19,12 +19,12 @@ axios.post( "http://127.0.0.1:8000/forecast",{"val":"val['v1']"})
 
 axios.post( "http://127.0.0.1:8000/Departments",{"val":"val['v1']"})
 .then(res=>{
-  console.log("result",res)
+  // console.log("result",res)
   localStorage.setItem("Category",JSON.stringify(res.data));
 })
 const val = {}
 axios.get("http://127.0.0.1:8000/PIE").then(res=>{
-  console.log("result",res)
+  // console.log("result",res)
   localStorage.setItem("PIE",JSON.stringify(res.data))
 })
 const App = () => {
@@ -41,7 +41,7 @@ const App = () => {
   }, []);
   
   
-  console.log(val["v1"],"sssssssssssssssssssss")
+  // console.log(val["v1"],"sssssssssssssssssssss")
   // console.log(JSON.parse(filter),"sssssssssssssssss");
   useEffect(() => {
     const interval = setInterval(() => {
@@ -49,7 +49,7 @@ const App = () => {
       val["v1"]  = JSON.parse(filter)
       const filter2 = localStorage.getItem("filter2")
       const selected = localStorage.getItem("selected")
-      console.log("SESESESESESESSSE",selected)
+      // console.log("SESESESESESESSSE",selected)
       axios.post("http://127.0.0.1:8000/EstimatedBudget",{"val":filter2})
     .then(res=>{
       localStorage.setItem("options2",res.data)
@@ -66,6 +66,9 @@ const App = () => {
       localStorage.setItem("YearD",res.data['Year'])
       localStorage.setItem("MonthGD",res.data['Month_Goal'])
       localStorage.setItem("YearGD",res.data['Year_Goal'])
+      localStorage.setItem("diff1",res.data['diff1'])
+      localStorage.setItem("diff2",res.data['diff2'])
+      // console.log(res.data['diff2'])
     })
     axios.post( "http://127.0.0.1:8000/sparkline",{"val":filter2})
     .then(res=>{
@@ -75,7 +78,7 @@ const App = () => {
       
       axios.post( "http://127.0.0.1:8000/latestrevenue",{"val":val["v1"]})
     .then(res=>{
-      console.log("result",res)
+      // console.log("result",res)
       Setchk(res.data);
     })
     }, 2000);
@@ -151,11 +154,11 @@ const App = () => {
                 <Route path='/Chart-Analysis' element={<Fchart/>}/>
                 {/* <Route path='/area' element={<Area/>}/>
                 <Route path='/bar' element={<Bar/>}/> */}
-                <Route path='/pie' element={<Pie/>}/>
+                {/* <Route path='/pie' element={<Pie/>}/> */}
                 {/* <Route path='/financial' element={<Financial/>}/>
                 <Route path='/color-mapping' element={<ColorMapping/>}/>
                 <Route path='/pyramid' element={<Pyramid/>}/> */}
-                <Route path='/stacked' element={<Stacked/>}/>
+                {/* <Route path='/stacked' element={<Stacked/>}/> */}
 
               </Routes>
             </div>

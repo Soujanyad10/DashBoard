@@ -1,18 +1,23 @@
 import React,{useState,useEffect} from 'react';
-import { BsCurrencyDollar } from 'react-icons/bs';
+import { BsBoxSeam } from 'react-icons/bs';
+import Currency from 'react-currency-icons'
 import { GoPrimitiveDot } from 'react-icons/go';
 // import { IoIosMore } from 'react-icons/io';
+
+import { FiBarChart} from 'react-icons/fi';
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
 
-import { Stacked, Pie, Button, Line, SparkLine } from '../components';
-import { earningData, medicalproBranding, recentTransactions, weeklyStats, dropdownData, SparklineAreaData, ecomPieChartData } from '../data/dummy';
+import { Stacked, Pie, Button, SparkLine } from '../components';
+import {  dropdownData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
-import axios from 'axios';
 // import product9 from '../data/product9.jpg';
 
 
 const PIEDATA = JSON.parse(localStorage.getItem('PIE'))
 const Cat = JSON.parse(localStorage.getItem('Category'))
+
+
+const D={}
 
 const ECommerce = () => {
   
@@ -20,9 +25,31 @@ const ECommerce = () => {
     const [YD,setYD] = useState("");
     const [YGD,setYGD] = useState("");
     const [MGD,setMGD] = useState("");
+    const [D1,setD1] = useState("");
+    const [D2,setD2] = useState("");
 
     const [Budget,setBudget] = useState("");
     const [Sparkl,setSparkl] = useState("");
+    const earningData = [
+      {
+        icon: <FiBarChart />,
+        amount: '₹'+YGD,
+        percentage: D["D1"]+"%",
+        title: 'Revenue Ytd Goal',
+        iconColor: '#03C9D7',
+        iconBg: '#E5FAFB',
+        pcColor: D["D1-c"],
+      },
+      {
+        icon: <BsBoxSeam />,
+        amount: '₹'+MGD,
+        percentage: D["D2"]+'%',
+        title: 'Revenue Month Goal',
+        iconColor: 'rgb(255, 244, 229)',
+        iconBg: 'rgb(254, 201, 15)',
+        pcColor: D["D2-c"],
+      }];
+      console.log()
 
     useEffect(() => {
       const interval = setInterval(() => {
@@ -31,8 +58,30 @@ const ECommerce = () => {
         setYD(localStorage.getItem("YearD"))
         setMGD(localStorage.getItem("MonthGD").toString().slice(0,8))
         setYGD(localStorage.getItem("YearGD"))
+        D["D1"] = localStorage.getItem("diff1")
+        D["D2"] = localStorage.getItem("diff2")
+        if(localStorage.getItem("diff1").includes("-")){
+          D["D1-c"] = "red-600"
+          D["D1-b"] = "bg-red-300"
+        }
+        else{
+          D["D1-c"] = "green-600"
+          D["D1-b"] = "bg-green-300"
+        }
+        if(localStorage.getItem("diff2").includes("-")){
+          D["D2-c"] = "red-600"
+        }
+        else{
+          D["D2-c"] = "green-600"
+        }
+        setD1(localStorage.getItem("diff1"))
+        setD2(localStorage.getItem("diff2"))
+        
         
         setSparkl(JSON.parse(localStorage.getItem('Sparkline')))
+        // if(localStorage.getItem("diff1").includes("-")){
+          // setED()
+        // }
 
         console.log("BBBBBBBBBBBBBBBBBBBBBBBBBUUUUUUUUUUUUUUUUUUUUUUUUDDDDDDDDD",Budget)
       }, 2000);
@@ -79,7 +128,7 @@ const ECommerce = () => {
               style={{ backgroundColor: currentColor }}
               className="text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  p-4"
             >
-              <BsCurrencyDollar />
+              <Currency code="INR" size="small" />
             </button>
           </div>
         </div>
@@ -95,7 +144,7 @@ const ECommerce = () => {
               style={{ backgroundColor: currentColor }}
               className="text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full  p-4"
             >
-              <BsCurrencyDollar />
+              <Currency code="INR" size="small" />
             </button>
           </div>
         </div>
@@ -145,12 +194,12 @@ const ECommerce = () => {
             <div className=" border-r-1 border-color m-4 pr-10">
               <div>
                 <p>
-                  <span className="text-3xl font-semibold">₹{YGD}</span>
-                  <span className="p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white bg-green-400 ml-3 text-xs">
-                    23%
+                  <span className="text-3xl font-semibold">₹{YD}</span>
+                  <span className={`p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white ${D["D1-b"]} ml-3 text-xs`}>
+                    {D["D1"]}
                   </span>
                 </p>
-                <p className="text-gray-500 mt-1">Total Revenue From last 23 Years</p>
+                <p className="text-gray-500 mt-1">Total Revenue</p>
               </div>
               <div className="mt-8">
                 <p className="text-3xl font-semibold">₹{MGD}</p>
