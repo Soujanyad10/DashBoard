@@ -53,10 +53,16 @@ const ECommerce = () => {
 
     useEffect(() => {
       const interval = setInterval(() => {
-        setBudget(localStorage.getItem("options2").toString())
+        var _opt2 = localStorage.getItem("options2")
+        if(_opt2===null){
+          setBudget(localStorage.getItem("options2"))
+        }
+        else{
+          setBudget(localStorage.getItem("options2").toString())
+        }
         setMD(localStorage.getItem("MonthD"))
         setYD(localStorage.getItem("YearD"))
-        setMGD(localStorage.getItem("MonthGD").toString().slice(0,8))
+        setMGD(localStorage.getItem("MonthGD"))
         setYGD(localStorage.getItem("YearGD"))
         D["D1"] = localStorage.getItem("diff1")
         D["D2"] = localStorage.getItem("diff2")

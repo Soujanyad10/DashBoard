@@ -10,6 +10,11 @@ import { ECommerce, Calendar,Fchart, Sap, Forcasting} from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
+
+
+localStorage.setItem("filter2","AGC01 - Agri Marketing & Co-Operation Secrt")
+localStorage.setItem("selected","AGC01 - Agri Marketing & Co-Operation Secrt")
+
 console.log("APIgggggg",Api)
 axios.post( Api+"forecast",{"val":"val['v1']"})
     .then(res=>{
@@ -25,10 +30,7 @@ axios.post( Api+"Departments",{"val":"val['v1']"})
   localStorage.setItem("Category",JSON.stringify(res.data));
 })
 const val = {}
-axios.get(Api+"PIE").then(res=>{
-  // console.log("result",res)
-  localStorage.setItem("PIE",JSON.stringify(res.data))
-})
+
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
   const [chk,Setchk] = useState();
@@ -59,6 +61,10 @@ const App = () => {
       axios.post(Api+"table",{"val":selected})
     .then(res=>{
       localStorage.setItem("Table",JSON.stringify(res.data))
+    })
+      axios.post(Api+"PIE",{"val":"hi"}).then(res=>{
+      // console.log("result",res)
+      localStorage.setItem("PIE",JSON.stringify(res.data))
     })
 
       axios.post( Api+"getdata",{"val":val["v1"]})
