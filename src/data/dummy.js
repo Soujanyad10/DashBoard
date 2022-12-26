@@ -3215,8 +3215,8 @@ export const stackedPrimaryXAxis = {
   majorTickLines: { width: 0 },
   minorTickLines: { width: 0 },
   interval: 1,
-  lineStyle: { width: 0 },
-  labelIntersectAction: 'Rotate45',
+  lineStyle: { width: 1 },
+  labelIntersectAction: 'Rotate90',
   valueType: 'Category',
 };
 

@@ -1,1 +1,1 @@
-export const Api = "https://965a-223-223-154-155.ngrok.io/";
+export const Api = "http://127.0.0.1:8000/";

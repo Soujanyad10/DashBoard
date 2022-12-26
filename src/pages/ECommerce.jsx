@@ -3,8 +3,10 @@ import { BsBoxSeam } from 'react-icons/bs';
 import Currency from 'react-currency-icons'
 import { GoPrimitiveDot } from 'react-icons/go';
 // import { IoIosMore } from 'react-icons/io';
-
 import { FiBarChart} from 'react-icons/fi';
+
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
 
 import { Stacked, Pie, Button, SparkLine } from '../components';
@@ -16,7 +18,18 @@ import { useStateContext } from '../contexts/ContextProvider';
 const PIEDATA = JSON.parse(localStorage.getItem('PIE'))
 const Cat = JSON.parse(localStorage.getItem('Category'))
 
+const download = (reid,downloadfilename)=>{
+  console.log("clicked")
+  // const input = document.getElementById(reid)
+  // html2canvas(input).then((canvas)=>{
+  //   const imgData = canvas.toDataURL("image/png")
+  //   const pdf = new jsPDF("p","pt","a4")
+  //   pdf.addImage(imgData,"JPEG",0,0)
+  //   pdf.save(`${downloadfilename}`)
 
+  // })
+
+}
 const D={}
 
 const ECommerce = () => {
@@ -27,9 +40,15 @@ const ECommerce = () => {
     const [MGD,setMGD] = useState("");
     const [D1,setD1] = useState("");
     const [D2,setD2] = useState("");
+    
 
     const [Budget,setBudget] = useState("");
     const [Sparkl,setSparkl] = useState("");
+    
+    
+    
+    
+    
     const earningData = [
       {
         icon: <FiBarChart />,
@@ -96,7 +115,7 @@ const ECommerce = () => {
 
 
   const { currentColor, currentMode } = useStateContext();
-  const [val, setval] = useState("2020");
+  const [val, setval] = useState("2021");
   const [opt, setOpt] = useState(Cat[0]);
   // const z = '$63,448.78';
   const handlechange = (event) => {
@@ -217,12 +236,24 @@ const ECommerce = () => {
                 <SparkLine currentColor={currentColor} id="line-sparkLine" type="Line" height="80px" width="250px" data={Sparkl} color={currentColor} />
               </div>
               <div className="mt-10">
-                <Button
-                  color="white"
-                  bgColor={currentColor}
-                  text="Download Report"
-                  borderRadius="10px"
-                />
+                <button
+                  // color="blue"
+                  // bgColor={currentColor}
+                  // text=""
+                  // borderRadius="10px"
+                  className={` text-sm p-3 w-100 hover:drop-shadow-xl hover:bg-gray`}
+                  style={{ backgroundColor: currentColor,color:"white", borderRadius:"10px" }}
+                  onClick={()=>{
+
+                    const input = document.getElementById("report")
+                    html2canvas(input).then((canvas)=>{
+                      const imgData = canvas.toDataURL("image/png")
+                      const pdf = new jsPDF("landscape","px","a2")
+                      pdf.addImage(imgData,"JPEG",0,0)
+                      pdf.save(`report`)
+                    })
+                  }}
+                >Download Report</button>
               </div>
             </div>
             <div>

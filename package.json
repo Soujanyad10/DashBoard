@@ -15,6 +15,8 @@
         "@syncfusion/ej2-react-schedule": "^19.4.50",
         "axios": "^1.2.1",
         "canvasjs-react-charts": "^1.0.5",
+        "html2canvas": "^1.4.1",
+        "jspdf": "^2.5.1",
         "react": "^17.0.2",
         "react-currency-icons": "^1.0.3",
         "react-dom": "^17.0.2",
