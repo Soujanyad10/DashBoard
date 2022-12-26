@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import {Api} from "./data/config.jsx"
 import axios from 'axios';
 
 import { Navbar, Sidebar, ThemeSettings } from './components';
@@ -9,7 +10,8 @@ import { ECommerce, Calendar,Fchart, Sap, Forcasting} from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
-axios.post( "http://127.0.0.1:8000/forecast",{"val":"val['v1']"})
+console.log("APIgggggg",Api)
+axios.post( Api+"forecast",{"val":"val['v1']"})
     .then(res=>{
       // console.log("result",res)
       localStorage.setItem("actdata",JSON.stringify(res.data["actual"]));
@@ -17,13 +19,13 @@ axios.post( "http://127.0.0.1:8000/forecast",{"val":"val['v1']"})
     }
 )
 
-axios.post( "http://127.0.0.1:8000/Departments",{"val":"val['v1']"})
+axios.post( Api+"Departments",{"val":"val['v1']"})
 .then(res=>{
   // console.log("result",res)
   localStorage.setItem("Category",JSON.stringify(res.data));
 })
 const val = {}
-axios.get("http://127.0.0.1:8000/PIE").then(res=>{
+axios.get(Api+"PIE").then(res=>{
   // console.log("result",res)
   localStorage.setItem("PIE",JSON.stringify(res.data))
 })
@@ -50,16 +52,16 @@ const App = () => {
       const filter2 = localStorage.getItem("filter2")
       const selected = localStorage.getItem("selected")
       // console.log("SESESESESESESSSE",selected)
-      axios.post("http://127.0.0.1:8000/EstimatedBudget",{"val":filter2})
+      axios.post(Api+"EstimatedBudget",{"val":filter2})
     .then(res=>{
       localStorage.setItem("options2",res.data)
     })
-      axios.post("http://127.0.0.1:8000/table",{"val":selected})
+      axios.post(Api+"table",{"val":selected})
     .then(res=>{
       localStorage.setItem("Table",JSON.stringify(res.data))
     })
 
-      axios.post( "http://127.0.0.1:8000/getdata",{"val":val["v1"]})
+      axios.post( Api+"getdata",{"val":val["v1"]})
     .then(res=>{
       // console.log("result21212121",res.data)
       localStorage.setItem("MonthD",res.data['Month'])
@@ -70,13 +72,13 @@ const App = () => {
       localStorage.setItem("diff2",res.data['diff2'])
       // console.log(res.data['diff2'])
     })
-    axios.post( "http://127.0.0.1:8000/sparkline",{"val":filter2})
+    axios.post( Api+"sparkline",{"val":filter2})
     .then(res=>{
       // console.log("result21212121",res.data)
       localStorage.setItem("Sparkline",JSON.stringify(res.data))
     })
       
-      axios.post( "http://127.0.0.1:8000/latestrevenue",{"val":val["v1"]})
+      axios.post( Api+"latestrevenue",{"val":val["v1"]})
     .then(res=>{
       // console.log("result",res)
       Setchk(res.data);

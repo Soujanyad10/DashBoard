@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import {CanvasJSChart} from 'canvasjs-react-charts';
 
 var actd = JSON.parse(localStorage.getItem('actdata'))
