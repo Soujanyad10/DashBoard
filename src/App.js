@@ -5,14 +5,14 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import axios from 'axios';
 
 import { Navbar, Sidebar, ThemeSettings } from './components';
-import { ECommerce, Calendar, Stacked, Line, Pie, Forcasting, Stocks} from './pages';
+import { ECommerce, Calendar, Stacked, Line, Pie, Forcasting, Stocks, Filtering} from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
 
-// var API = "http://127.0.0.1:8000/"
+var API = "http://127.0.0.1:8000/"
 
-const API = "https://4c3f-223-223-155-81.ngrok.io/"
+// const API = "https://4c3f-223-223-155-81.ngrok.io/"
 
 axios.post( API+"forecast",{"val":"val['v1']"})
     .then(res=>{
@@ -21,6 +21,12 @@ axios.post( API+"forecast",{"val":"val['v1']"})
       localStorage.setItem("preddata",JSON.stringify(res.data["predicted"]));
     })
 const val = {}
+
+axios.post( API+"Departments",{"val":"val['v1']"})
+.then(res=>{
+    localStorage.setItem("opt",JSON.stringify(res.data));
+    console.log("result",res);
+})
 
 
 const App = () => {
@@ -120,6 +126,7 @@ const App = () => {
 
                 {/* Pages */}
                 <Route path='/forcasting' element={<Forcasting/>}/>
+                <Route path='/filtering' element={<Filtering/>}/>
 
                 {/* Apps */}
                 <Route path='/calendar' element={<Calendar/>}/>

@@ -19,7 +19,9 @@
         "react-dom": "^17.0.2",
         "react-icons": "^4.7.1",
         "react-router-dom": "^6.2.1",
-        "react-scripts": "5.0.0"
+        "react-scripts": "5.0.0",
+        "react-table-component": "^0.9.8",
+        "style-components": "^0.1.0"
     },
     "scripts": {
         "start": "react-scripts start",
