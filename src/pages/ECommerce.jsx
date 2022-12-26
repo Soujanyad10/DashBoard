@@ -220,7 +220,7 @@ const ECommerce = () => {
               <div>
                 <p>
                   <span className="text-3xl font-semibold">₹{YD}</span>
-                  <span className={`p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white ${D["D1-b"]} ml-3 text-xs`}>
+                  <span className={`p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-black ${D["D1-b"]} ml-3 text-xs`}>
                     {D["D1"]}
                   </span>
                 </p>
