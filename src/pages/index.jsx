@@ -8,6 +8,8 @@ export { default as Calendar } from './Calendar';
 export { default as Stocks } from './Charts/Stocks';
 export { default as Line } from './Charts/Line';
 export { default as Pie } from './Charts/Pie';
+export { default as Fchart } from './Charts/Fchart';
 // export { default as Pyramid } from './Charts/Pyramid';
 export { default as Stacked } from './Charts/Stacked';
 export { default as Forcasting } from './Forcasting';
+export { default as Sap } from './Sap';

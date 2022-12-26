@@ -1,11 +1,9 @@
 import React, { useState,useEffect } from 'react';
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Legend, Category, StackingColumnSeries, Tooltip } from '@syncfusion/ej2-react-charts';
 import axios from 'axios';
+import {Api} from '../../data/config'
 import {  stackedPrimaryXAxis, stackedPrimaryYAxis } from '../../data/dummy';
 import { useStateContext } from '../../contexts/ContextProvider';
-
-
-const API = "https://4c3f-223-223-155-81.ngrok.io/"
 
 const kl = {}
 // console.log(details)
@@ -16,7 +14,7 @@ const Stacked = ({ width, height,filter}) => {
   const [details, setDetails] = useState();
   useEffect(() => {
     const interval = setInterval(() => {
-      axios.post( API+"sales2",{'msg':kl["val"] })
+      axios.post( Api+"sales2",{'msg':kl["val"] })
     .then(res=>{
       setDetails(res.data);
     })

@@ -2,26 +2,34 @@ import React, { useEffect,useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import {Api} from "./data/config.jsx"
 import axios from 'axios';
 
 import { Navbar, Sidebar, ThemeSettings } from './components';
-import { ECommerce, Calendar, Stacked, Line, Pie, Forcasting, Stocks} from './pages';
+import { ECommerce, Calendar,Fchart, Sap, Forcasting} from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
 
-// var API = "http://127.0.0.1:8000/"
 
-const API = "https://4c3f-223-223-155-81.ngrok.io/"
+localStorage.setItem("filter2","AGC01 - Agri Marketing & Co-Operation Secrt")
+localStorage.setItem("selected","AGC01 - Agri Marketing & Co-Operation Secrt")
 
-axios.post( API+"forecast",{"val":"val['v1']"})
+console.log("APIgggggg",Api)
+axios.post( Api+"forecast",{"val":"val['v1']"})
     .then(res=>{
-      console.log("result",res)
+      // console.log("result",res)
       localStorage.setItem("actdata",JSON.stringify(res.data["actual"]));
       localStorage.setItem("preddata",JSON.stringify(res.data["predicted"]));
-    })
-const val = {}
+    }
+)
 
+axios.post( Api+"Departments",{"val":"val['v1']"})
+.then(res=>{
+  // console.log("result",res)
+  localStorage.setItem("Category",JSON.stringify(res.data));
+})
+const val = {}
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
@@ -37,26 +45,48 @@ const App = () => {
   }, []);
   
   
-  console.log(val["v1"],"sssssssssssssssssssss")
+  // console.log(val["v1"],"sssssssssssssssssssss")
   // console.log(JSON.parse(filter),"sssssssssssssssss");
   useEffect(() => {
     const interval = setInterval(() => {
       const filter = localStorage.getItem("filer")
       val["v1"]  = JSON.parse(filter)
-      console.log(val["v1"],"iiiiiiiiiiiiiiiiiiiii")
-
-      axios.post( API+"getdata",{"val":val["v1"]})
+      const filter2 = localStorage.getItem("filter2")
+      const selected = localStorage.getItem("selected")
+      // console.log("SESESESESESESSSE",selected)
+      axios.post(Api+"EstimatedBudget",{"val":filter2})
     .then(res=>{
-      console.log("result21212121",res.data)
+      localStorage.setItem("options2",res.data)
+    })
+      axios.post(Api+"table",{"val":selected})
+    .then(res=>{
+      localStorage.setItem("Table",JSON.stringify(res.data))
+    })
+      axios.post(Api+"PIE",{"val":"hi"}).then(res=>{
+      // console.log("result",res)
+      localStorage.setItem("PIE",JSON.stringify(res.data))
+    })
+
+      axios.post( Api+"getdata",{"val":val["v1"]})
+    .then(res=>{
+      // console.log("result21212121",res.data)
       localStorage.setItem("MonthD",res.data['Month'])
       localStorage.setItem("YearD",res.data['Year'])
       localStorage.setItem("MonthGD",res.data['Month_Goal'])
       localStorage.setItem("YearGD",res.data['Year_Goal'])
+      localStorage.setItem("diff1",res.data['diff1'])
+      localStorage.setItem("diff2",res.data['diff2'])
+      // console.log(res.data['diff2'])
+    })
+    axios.post( Api+"sparkline",{"val":filter2})
+    .then(res=>{
+      // console.log("result21212121",res.data)
+      localStorage.setItem("Sparkline",JSON.stringify(res.data))
     })
       
-      axios.post( API+"latestrevenue",{"val":val["v1"]})
+      axios.post( Api+"latestrevenue",{"val":val["v1"]})
     .then(res=>{
-      console.log("result",res)
+      // console.log("result",res)
       Setchk(res.data);
     })
     }, 2000);
@@ -64,7 +94,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className={currentMode === 'Dark' ? 'dark' : ''}>
+    <div className={currentMode === 'Dark' ? 'dark' : ''} id="report">
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
@@ -116,19 +146,27 @@ const App = () => {
               <Routes>
                 {/* dashboard  */}
                 <Route path='/' element={<ECommerce/>}/>
-                <Route path='/ecommerce' element={<ECommerce/>}/>
+                <Route path='/Financial-Dashboard' element={<ECommerce/>}/>
 
                 {/* Pages */}
-                <Route path='/forcasting' element={<Forcasting/>}/>
+                {/* <Route path='/employees' element={<Employees/>}/>
+                <Route path='/customers' element={<Customers/>}/> */}
+                <Route path='/Forecasting' element={<Forcasting/>}/>
 
                 {/* Apps */}
-                <Route path='/calendar' element={<Calendar/>}/>
+                <Route path='/Calendar' element={<Calendar/>}/>
+                <Route path='/Budget-Info' element={<Sap/>}/>
+                {/* <Route path='/task' element={<Task/>}/> */}
 
                 {/* Charts */}
-                <Route path='/line' element={<Line/>}/>
-                <Route path='/pie' element={<Pie/>}/>
-                <Route path='/stocks' element={<Stocks />}/>
-                <Route path='/stacked' element={<Stacked/>}/>
+                <Route path='/Chart-Analysis' element={<Fchart/>}/>
+                {/* <Route path='/area' element={<Area/>}/>
+                <Route path='/bar' element={<Bar/>}/> */}
+                {/* <Route path='/pie' element={<Pie/>}/> */}
+                {/* <Route path='/financial' element={<Financial/>}/>
+                <Route path='/color-mapping' element={<ColorMapping/>}/>
+                <Route path='/pyramid' element={<Pyramid/>}/> */}
+                {/* <Route path='/stacked' element={<Stacked/>}/> */}
 
               </Routes>
             </div>

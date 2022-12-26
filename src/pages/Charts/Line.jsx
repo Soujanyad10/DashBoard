@@ -16,22 +16,22 @@ const LineChart = () => {
         text: "Predicted Revenue"
     },
     axisY: {
-        title: "Amount in Dollar",
+        title: "Amount in Rupees",
         interval: 500,
-        suffix: "$"
+        suffix: "₹"
     },
     toolTip: {
         shared: true
     },
     data: [{
-      type: "spline",
-      name: "2023 Actual",
+      type: "line",
+      name: "Actual",
       showInLegend: true,
       dataPoints: actd
     },
     {
         type: "spline",
-        name: "2023 Predicted",
+        name: "Predicted",
         showInLegend: true,
         dataPoints: pred
     }]
