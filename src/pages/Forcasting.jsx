@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import {CanvasJSChart} from 'canvasjs-react-charts';
 
 var actd = JSON.parse(localStorage.getItem('actdata'))
@@ -17,22 +17,22 @@ const Forcasting = () => {
         text: "Predicted Revenue"
     },
     axisY: {
-        title: "Amount in Dollar",
+        title: "Amount in Rupees",
         interval: 500,
-        suffix: "$"
+        suffix: "₹"
     },
     toolTip: {
         shared: true
     },
     data: [{
-      type: "spline",
-      name: "2023 Actual",
+      type: "line",
+      name: "Actual",
       showInLegend: true,
       dataPoints: actd
     },
     {
         type: "spline",
-        name: "2023 Predicted",
+        name: "Predicted",
         showInLegend: true,
         dataPoints: pred
     }]
@@ -47,16 +47,16 @@ const Forcasting = () => {
         text: "6 Months Given Revenue"
     },
     axisY: {
-        title: "Amount in Dollar",
+        title: "Amount in Rupees",
         interval: 500,
-        suffix: "$"
+        suffix: "₹"
     },
     toolTip: {
         shared: true
     },
     data: [{
-        type: "spline",
-        name: "2023 6 Months",
+        type: "line",
+        name: "2022 6 Months",
         showInLegend: true,
         dataPoints: actd
     }]

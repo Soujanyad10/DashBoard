@@ -12,8 +12,8 @@ class SparkLine extends React.PureComponent {
         width={width}
         lineWidth={1}
         valueType="Numeric"
-        fill={color}
-        border={{ color: currentColor, width: 2 }}
+        fill={"black"}
+        border={{ color: "black", width: 1 }}
         tooltipSettings={{
           visible: true,
 
@@ -22,7 +22,7 @@ class SparkLine extends React.PureComponent {
             visible: true,
           },
         }}
-        markerSettings={{ visible: ['All'], size: 2.5, fill: currentColor }}
+        markerSettings={{ visible: ['All'], size: 2.5, fill: "black"  }}
         dataSource={data}
         xName="x"
         yName="yval"

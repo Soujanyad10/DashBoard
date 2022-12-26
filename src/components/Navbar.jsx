@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-// import { FiShoppingCart } from 'react-icons/fi';
+import { FiShoppingCart } from 'react-icons/fi';
 import { BsChatLeft } from 'react-icons/bs';
 import { RiNotification3Line } from 'react-icons/ri';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-// import  {Clock}  from './Clock';
+
 import avatar from '../data/avatar.jpg';
-import {Chat,Clock, Notification, UserProfile } from '.';
+import { Clock, Chat, Notification, UserProfile } from '.';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
@@ -51,7 +51,7 @@ const Navbar = () => {
   const handleActiveMenu = () => setActiveMenu(!activeMenu);
 
   return (
-    <div className="flex justify-between p-2 md:ml-6 md:mr-6 relative"> 
+    <div className="flex justify-between p-2 md:ml-6 md:mr-6 relative">
       <NavButton title="Menu" customFunc={handleActiveMenu} color={currentColor} icon={<AiOutlineMenu />} />
       <div>
         <Clock />
@@ -80,7 +80,7 @@ const Navbar = () => {
           </div>
         </TooltipComponent>
 
-        {/* {isClicked.clock && (<clock />)} */}
+        {/* {isClicked.cart && (<Cart />)} */}
         {isClicked.chat && (<Chat />)}
         {isClicked.notification && (<Notification />)}
         {isClicked.userProfile && (<UserProfile />)}
